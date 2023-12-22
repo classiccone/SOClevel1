@@ -1,0 +1,34 @@
+1.	Cyber Defense Frameworks
+Hash Values: 
+Three commonly used Hash algorithms: 
+1. MD5
+2. SHA-1
+3. SHA-2
+For ransomware reports in the past, where security researchers would provide the hashes related to the malicious or suspicious files used at the end of the report. We can check out The DFIR Report and FireEye Threat Research Blogs if you’re interested in seeing an example.
+Online tools to look up Hashes, IP, Domain online: 
+https://www.virustotal.com/gui/home/upload (Virus Total)
+https://metadefender.opswat.com/ (OPSWAT)
+Domain Name: 
+Attackers usually hide the malicious domains under URL Shorteners. We can see the actual website the shortened link is redirecting you to by appending "+" to it.
+Cyber Kill Chain: 
+The Cyber Kill Chain will help you understand and protect against ransomware attacks, security breaches as well as Advanced Persistent Threats (APTs).
+Reconnaissance
+Weaponization
+Delivery
+Exploitation
+Installation
+Command & Control
+Actions on Objective
+Email harvesting is the process of obtaining email addresses from public, paid, or free services.
+theHarvester (https://github.com/laramies/theHarvester)- other than gathering emails, this tool is also capable of gathering names, subdomains, IPs, and URLs using multiple public data sources 
+Hunter.io – (https://hunter.io/) this is an email hunting tool that will let you obtain contact information associated with the domain
+OSINT Framework (https://osintframework.com/) - OSINT Framework provides the collection of OSINT tools based on various categories
+
+Diamond Model: 
+The Diamond Model is composed of four core features: adversary, infrastructure, capability, and victim, and establishes the fundamental atomic element of any intrusion activity
+
+MITRE: 
+ATT&CK Framework: (https://attack.mitre.org/)
+Cyber Analytics Repository (CAR): (https://car.mitre.org/)
+MITRE ENGAGE: (https://engage.mitre.org/matrix/)
+D3FEND: (https://d3fend.mitre.org/)
