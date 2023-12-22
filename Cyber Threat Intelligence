@@ -1,0 +1,55 @@
+2. Cyber Threat Intelligence
+Threat Intelligence Tools
+Threat Intelligence Classifications:
+Strategic Intel
+Technical Intel
+Tactical Intel
+Operational Intel
+Urlscan.io (https://urlscan.io/) is a free service developed to assist in scanning and analyzing websites. 
+Abuse.ch (https://abuse.ch/) abuse.ch operates the following public platforms:
+Malware Bazaar:  A resource for sharing malware samples.
+Feodo Tracker:  A resource used to track botnet command and control (C2) infrastructure linked with Emotet, Dridex and TrickBot.
+SSL Blacklist:  A resource for collecting and providing a block list for malicious SSL certificates and JA3/JA3s fingerprints.
+URL Haus:  A resource for sharing malware distribution sites.
+Threat Fox:  A resource for sharing indicators of compromise (IOCs).
+Phish Tool (https://www.phishtool.com/) Core features: Perform email analysis, Heuristic intelligence, Classification and reporting.
+Cisco Talos Intelligence: https://talosintelligence.com/
+YARA
+"The pattern matching swiss knife for malware researchers (and everyone else)"
+Using a Yara rule is simple. Every Yara command requires two arguments to be valid, these are:
+1) The rule file we create
+2w) Name of file, directory, or process ID to use the rule for
+Every rule must have a name and condition.
+Each rule in YARA starts with the keyword rule followed by a rule identifier.
+Rules are typically divided into two sections: the strings definition section and the condition section. The strings definition section, which can be omitted if the rule doesn't rely on any string, defines the strings that will be used in the rule. 
+Each string has an identifier consisting of a $ character followed by alphanumeric characters and underscores. These identifiers are then referred to in the condition section. Strings can be defined in text or hexadecimal form, with text strings enclosed in double quotes and hex strings enclosed in curly brackets. 
+The condition section contains a Boolean expression that determines whether a file or process satisfies the rule. It often references previously defined strings as Boolean variables, evaluating to true if the string is found or false if not.
+Example: 
+ 
+
+Read more rules: https://yara.readthedocs.io/en/stable/writingrules.html
+
+YARA Modules:
+To address the presence of an undetected file, file 2, in our environment, we need to create a Yara rule that specifically detects this web shell. However, manually searching through the lines of code in the file would be a time-consuming process. Thankfully, we can utilize a powerful tool called yarGen, which is a YARA rule generator that can help us automate the rule creation process.
+To begin, we need to update yarGen to ensure we have the latest version. Open the terminal and navigate to the yarGen directory. Run the following command:
+
+python3 yarGen.py --update
+This will update yarGen with the latest enhancements and bug fixes, ensuring we have the most effective rule generation capabilities. Once yarGen is updated, we can proceed to generate a Yara rule specifically for file 2. We'll use the following command:
+
+python3 yarGen.py -m /home/cmnatic/suspicious-files/file2 --excludegood -o /home/cmnatic/suspicious-files/file2.yar
+
+Let's break down this command:
+-m
+ specifies the path to the file we want to generate the rule for, in this case, it's 
+/home/cmnatic/suspicious-files/file2
+
+--excludegood
+ ensures that yarGen excludes any known legitimate strings in the target file from the generated rule, reducing the chance of false positives.
+
+-o
+ specifies the output path for the generated Yara rule. In this example, it's 
+/home/cmnatic/suspicious-files/file2.yar
+After executing the command, yarGen will analyze the file and generate a Yara rule tailored specifically to detect the web shell it contains. This rule will be saved in the specified output path.
+
+Once the Yara rule is generated, it's essential to review and fine-tune it to eliminate any strings that may result in false positives. False positives occur when the Yara rule identifies innocent files or code snippets as malicious. By carefully examining the generated rule, we can remove any strings that could potentially trigger false positives and ensure accurate detection of the web shell. 
+By utilizing yarGen and following these steps, we can efficiently generate a Yara rule to detect the specific web shell present in file 2, saving time and improving the overall security of our environment
